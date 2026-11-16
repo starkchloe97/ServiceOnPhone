@@ -24,7 +24,7 @@ export const siteConfig = {
     messageUrl: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   },
   api: {
-    endpoint: '/api/submit.php',
+    endpoint: '/api/submit',
   },
   navigation: [
     { label: 'About us', href: '#s-about' },
