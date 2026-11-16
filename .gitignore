@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.DS_Store
+*.log
+.env
+.env.*
+!.env.example
+/api/config/database.php
+.phpunit.cache/
+.vscode/
+.idea/

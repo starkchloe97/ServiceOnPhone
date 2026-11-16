@@ -1,0 +1,13 @@
+Options -Indexes
+RewriteEngine On
+
+# Keep the PHP API reachable and deny direct access to private database config.
+RewriteRule ^api/config/ - [F,L]
+RewriteCond %{REQUEST_URI} !^/api/ [NC]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+
+<FilesMatch "^(\.env|\.git|composer\.(json|lock))$">
+    Require all denied
+</FilesMatch>
