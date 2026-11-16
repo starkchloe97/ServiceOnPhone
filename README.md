@@ -76,7 +76,7 @@ Wrangler stores local D1 data in its local state directory. That directory is ex
 
 ## 5. Deploy through Cloudflare Pages (recommended)
 
-This is the easiest ongoing workflow: connect GitHub once, and Cloudflare Pages will build and publish when you push commits to main.
+For the standard Cloudflare Pages Git integration, connect GitHub once and Pages automatically builds and publishes each push to main.
 
 1. Open Cloudflare Dashboard → Workers & Pages → Create application → Pages → Connect to Git.
 2. Select the GitHub repository starkchloe97/ServiceOnPhone.
@@ -84,20 +84,40 @@ This is the easiest ongoing workflow: connect GitHub once, and Cloudflare Pages 
 4. Set the build command to npm run build.
 5. Set the build output directory to dist.
 6. Keep the project root as the repository root.
-7. Make sure the Cloudflare Pages project uses the D1 binding defined in wrangler.toml: variable name DB, database service-on-phone-db. The configuration file is the source of truth for the Pages Functions binding.
-8. Deploy the project.
+7. Make sure the Pages project has the D1 binding named DB, pointing to service-on-phone-db.
+8. Save and deploy.
 
-The functions/ folder must remain at the repository root (alongside src/ and wrangler.toml). Cloudflare detects it and deploys the API functions with the site.
+The functions/ folder must remain at the repository root (alongside src/ and wrangler.toml). Cloudflare detects it and deploys the API functions with the site. For both Production and Preview environments, make sure the DB binding points to the intended D1 database.
 
-For both Production and Preview environments, make sure the D1 binding named DB points to the intended D1 database. Redeploy after changing bindings.
+### Important: use the Pages deploy command, not the Workers deploy command
+
+The build log you shared shows Cloudflare running:
+
+    npx wrangler deploy
+
+That command is for deploying a Worker script. This repository is a Pages project, so it fails with the missing Worker entry-point error.
+
+If your Cloudflare setup shows a separate **Deploy command** field (as in the log you shared), set it to:
+
+    npm run deploy:pages
+
+That script runs:
+
+    wrangler pages deploy dist --project-name service-on-phone
+
+Do not use npx wrangler deploy or wrangler deploy for this project. If you are using the normal Pages Git integration and there is no separate Deploy command field, leave that field unset; Pages automatically deploys the configured dist build output after npm run build succeeds.
+
+The Pages project name in Cloudflare must be service-on-phone for the included command. If you chose a different Pages project name, change the --project-name value in package.json to exactly match it.
 
 ## 6. Optional: deploy from your terminal
 
-After the Pages project named service-on-phone exists and Wrangler is authenticated, you can also deploy manually:
+After the Pages project named service-on-phone exists and Wrangler is authenticated, run:
 
     npm run deploy
 
-This builds dist and uploads the static assets plus the Pages Functions from the repository.
+This builds the Vue app and uploads dist plus the Pages Functions. To upload the already-built dist directory without rebuilding, run:
+
+    npm run deploy:pages
 
 ## 7. How the contact form works
 
