@@ -40,7 +40,7 @@ onUnmounted(() => window.removeEventListener('scroll', updateScroll))
     <div class="header-nav-wrap" :class="{ 'is-fixed': isScrolled }">
       <div class="container">
         <div class="header-nav-card">
-          <a class="brand" href="#top" aria-label="Go to top" @click="closeMenu">
+          <a class="brand" href="#top" :aria-label="siteConfig.ui.backToTop" @click="closeMenu">
             <span class="brand-mark"><span>{{ siteConfig.brandMarkText }}</span></span>
             <span class="brand-copy">
               <strong>{{ siteConfig.siteName }}</strong>
@@ -48,7 +48,7 @@ onUnmounted(() => window.removeEventListener('scroll', updateScroll))
             </span>
           </a>
 
-          <nav class="desktop-nav" aria-label="Main navigation">
+          <nav class="desktop-nav" :aria-label="siteConfig.ui.navigationAriaLabel">
             <a v-for="item in siteConfig.navigation" :key="item.href" :href="item.href">{{ item.label }}</a>
           </nav>
 
@@ -69,7 +69,7 @@ onUnmounted(() => window.removeEventListener('scroll', updateScroll))
           </button>
         </div>
 
-        <nav v-if="menuOpen" class="mobile-nav" aria-label="Mobile navigation">
+        <nav v-if="menuOpen" class="mobile-nav" :aria-label="siteConfig.ui.mobileNavigationAriaLabel">
           <a v-for="item in siteConfig.navigation" :key="item.href" :href="item.href" @click="closeMenu">
             {{ item.label }}
           </a>
