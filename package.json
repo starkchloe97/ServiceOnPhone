@@ -10,7 +10,8 @@
     "api": "wrangler pages dev dist --port 8788",
     "db:local": "wrangler d1 execute service-on-phone-db --local --file=database/schema.sql",
     "db:remote": "wrangler d1 execute service-on-phone-db --remote --file=database/schema.sql",
-    "deploy": "npm run build && wrangler pages deploy dist --project-name service-on-phone"
+    "deploy": "npm run build && wrangler pages deploy dist --project-name service-on-phone",
+    "deploy:pages": "wrangler pages deploy dist --project-name service-on-phone"
   },
   "dependencies": {
     "lucide-vue-next": "^0.468.0",
