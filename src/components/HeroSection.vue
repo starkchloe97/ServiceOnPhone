@@ -31,7 +31,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <section id="top" class="hero-section" aria-label="Appliance repair service introduction">
+  <section id="top" class="hero-section" :aria-label="siteConfig.ui.heroAriaLabel">
     <div class="hero-backdrop" :style="{ backgroundImage: 'url(' + activeSlide.image + ')' }"></div>
     <div class="hero-overlay"></div>
     <div class="container hero-content">
@@ -60,7 +60,7 @@ onUnmounted(() => {
       </div>
 
       <div class="hero-controls" aria-label="Hero slides">
-        <button type="button" class="hero-arrow" aria-label="Previous slide" @click="previousSlide">
+        <button type="button" class="hero-arrow" :aria-label="siteConfig.ui.previousSlide" @click="previousSlide">
           <ChevronLeft :size="23" />
         </button>
         <div class="hero-dots">
@@ -69,12 +69,12 @@ onUnmounted(() => {
             :key="slide.title"
             type="button"
             :class="{ active: index === activeIndex }"
-            :aria-label="'Show slide ' + (index + 1)"
+            :aria-label="siteConfig.ui.slideLabel + ' ' + (index + 1)"
             :aria-current="index === activeIndex ? 'true' : undefined"
             @click="setSlide(index)"
           ></button>
         </div>
-        <button type="button" class="hero-arrow" aria-label="Next slide" @click="nextSlide">
+        <button type="button" class="hero-arrow" :aria-label="siteConfig.ui.nextSlide" @click="nextSlide">
           <ChevronRight :size="23" />
         </button>
       </div>
