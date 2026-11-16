@@ -3,6 +3,8 @@ const workshopImage = 'https://media.easy-peasy.ai/996dd508-8e70-47a0-a1ae-d6740
 const technicianImage = 'https://mshahidsaleem.ae/images/about/homeappliances.png'
 const inspectionImage = 'https://refrimaq.org/__l5e/assets-v1/6705ca47-0b7d-4e11-aaf6-8001a1312a4a/autorizada-electrolux.jpg'
 const teamImage = 'https://www.centro-tecnico.pro/img/banner2.png'
+const whatsappNumber = '923323340828'
+const whatsappMessage = 'Hello, I would like to ask about your appliance repair service.'
 
 export const siteConfig = {
   siteName: 'ServiceOnPhone',
@@ -12,14 +14,14 @@ export const siteConfig = {
   contact: {
     phoneDisplay: '+92 332 3340828',
     phoneE164: '+923323340828',
-    whatsappNumber: '923323340828',
+    whatsappNumber,
     email: '',
     address: 'Johar Mor Rd Service Ln, Block 19 Gulistan-e-Johar, Karachi, Pakistan',
     mapUrl: 'https://www.google.com/maps/search/?api=1&query=Johar%20Mor%20Rd%20Service%20Ln%2C%20Block%2019%20Gulistan-e-Johar%2C%20Karachi',
   },
   whatsapp: {
-    callUrl: 'https://wa.me/923323340828',
-    messageUrl: 'https://wa.me/923323340828?text=Hello%2C%20I%20would%20like%20to%20ask%20about%20your%20appliance%20repair%20service.',
+    callUrl: `https://wa.me/${whatsappNumber}`,
+    messageUrl: `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`,
   },
   api: {
     endpoint: '/api/submit.php',
