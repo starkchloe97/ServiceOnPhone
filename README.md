@@ -60,7 +60,7 @@ Required PHP extensions: PDO and pdo_mysql. The endpoint accepts JSON POST reque
 
 Edit src/config/site.config.js. It contains the business name, brand name, phone numbers, WhatsApp number and links, email, address, map link, navigation labels, hero slides, about copy, statistics, service descriptions, gallery images, contact copy, footer text and opening hours.
 
-To change the WhatsApp destination, update contact.whatsappNumber and the two URLs in whatsapp. Use the international number without spaces or a leading plus sign in the wa.me URL. Update phoneE164 separately for the tel: links.
+To change the WhatsApp destination, update the whatsappNumber constant near the top of site.config.js. The call and prefilled-message URLs are derived from it automatically. Use the international number without spaces or a leading plus sign. Update phoneE164 separately for the tel: links.
 
 Replace the image URLs in the config with your own licensed images. Images are remote references so you can rebrand them without changing the Vue components.
 
