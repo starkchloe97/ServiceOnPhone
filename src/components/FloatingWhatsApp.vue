@@ -1,5 +1,5 @@
 <script setup>
-import { MessageCircle } from 'lucide-vue-next'
+import { MessageCircle } from '@lucide/vue'
 import { siteConfig } from '@/config/site.config'
 </script>
 

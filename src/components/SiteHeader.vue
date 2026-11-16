@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, onUnmounted, ref } from 'vue'
-import { ArrowUpRight, MapPin, Menu, Phone, X } from 'lucide-vue-next'
+import { ArrowUpRight, MapPin, Menu, Phone, X } from '@lucide/vue'
 import { siteConfig } from '@/config/site.config'
 
 const emit = defineEmits(['request-call'])

@@ -1,10 +1,10 @@
 name = "service-on-phone"
 compatibility_date = "2026-11-16"
-pages_build_output_dir = "dist"
+pages_build_output_dir = "./dist"
 
-# Create your own D1 database, then replace the placeholder ID below.
-# Keep the binding name as DB; the Pages Function reads env.DB.
+# Replace this with the actual ID returned by:
+# npx wrangler d1 create service-on-phone-db
 [[d1_databases]]
 binding = "DB"
 database_name = "service-on-phone-db"
-database_id = "b6e9fa12-c35a-4a64-9148-19f7792d4485"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"

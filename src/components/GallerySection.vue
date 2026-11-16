@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from 'vue'
-import { ArrowUpRight, X } from 'lucide-vue-next'
+import { ArrowUpRight, X } from '@lucide/vue'
 import { siteConfig } from '@/config/site.config'
 
 const expanded = ref(false)

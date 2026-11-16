@@ -1,6 +1,6 @@
 <script setup>
 import { watch } from 'vue'
-import { ArrowUpRight, X } from 'lucide-vue-next'
+import { ArrowUpRight, X } from '@lucide/vue'
 import { siteConfig } from '@/config/site.config'
 import { useLeadForm } from '@/composables/useLeadForm'
 

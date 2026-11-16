@@ -1,5 +1,5 @@
 <script setup>
-import { ArrowUpRight, MapPin, Phone } from 'lucide-vue-next'
+import { ArrowUpRight, MapPin, Phone } from '@lucide/vue'
 import { siteConfig } from '@/config/site.config'
 </script>
 

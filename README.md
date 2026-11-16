@@ -74,50 +74,45 @@ Open the Vite URL, normally http://localhost:5173. Vite forwards /api calls to t
 
 Wrangler stores local D1 data in its local state directory. That directory is excluded from Git.
 
-## 5. Deploy through Cloudflare Pages (recommended)
+## 5. Deploy through Cloudflare Pages
 
-For the standard Cloudflare Pages Git integration, connect GitHub once and Pages automatically builds and publishes each push to main.
+This repository is a **Cloudflare Pages** project, not a Workers project. Keep the `functions/` directory at the repository root so Cloudflare deploys the Pages Function at `/api/submit`.
 
-1. Open Cloudflare Dashboard → Workers & Pages → Create application → Pages → Connect to Git.
-2. Select the GitHub repository starkchloe97/ServiceOnPhone.
-3. Choose main as the production branch.
-4. Set the build command to npm run build.
-5. Set the build output directory to dist.
-6. Keep the project root as the repository root.
-7. Make sure the Pages project has the D1 binding named DB, pointing to service-on-phone-db.
-8. Save and deploy.
+### Recommended: GitHub integration
 
-The functions/ folder must remain at the repository root (alongside src/ and wrangler.toml). Cloudflare detects it and deploys the API functions with the site. For both Production and Preview environments, make sure the DB binding points to the intended D1 database.
+When you connect this repository using Cloudflare Pages Git integration, **leave the Deploy command empty**. Pages automatically deploys the build output after the build command succeeds.
 
-### Important: use the Pages deploy command, not the Workers deploy command
+Use these settings:
 
-The build log you shared shows Cloudflare running:
+- Project type: Pages
+- Repository: `starkchloe97/ServiceOnPhone`
+- Production branch: `main`
+- Root directory: repository root
+- Build command: `npm run build`
+- Build output directory: `dist`
+- Pages project name: `service-on-phone`
 
-    npx wrangler deploy
-
-That command is for deploying a Worker script. This repository is a Pages project, so it fails with the missing Worker entry-point error.
-
-If your Cloudflare setup shows a separate **Deploy command** field (as in the log you shared), set it to:
+If your Cloudflare setup requires a separate Deploy command, use:
 
     npm run deploy:pages
 
-That script runs:
+That command runs `wrangler pages deploy dist --project-name service-on-phone`. Never use `wrangler deploy` or `npx wrangler deploy`; those commands deploy Worker scripts and are incorrect for this Pages project.
 
-    wrangler pages deploy dist --project-name service-on-phone
+If the project was created as a Worker rather than Pages, create a new Pages project through Workers & Pages → Create application → Pages → Connect to Git, then move your custom domain to the Pages project.
 
-Do not use npx wrangler deploy or wrangler deploy for this project. If you are using the normal Pages Git integration and there is no separate Deploy command field, leave that field unset; Pages automatically deploys the configured dist build output after npm run build succeeds.
+### Optional terminal deployment
 
-The Pages project name in Cloudflare must be service-on-phone for the included command. If you chose a different Pages project name, change the --project-name value in package.json to exactly match it.
-
-## 6. Optional: deploy from your terminal
-
-After the Pages project named service-on-phone exists and Wrangler is authenticated, run:
+After the Pages project exists and Wrangler is authenticated, you can manually build and deploy with:
 
     npm run deploy
 
-This builds the Vue app and uploads dist plus the Pages Functions. To upload the already-built dist directory without rebuilding, run:
+To upload an already-built `dist/` directory:
 
     npm run deploy:pages
+
+The GitHub Pages integration does not need either command in its Deploy command field.
+
+For both Production and Preview environments, ensure the Pages D1 binding is named `DB` and points to `service-on-phone-db`.
 
 ## 7. How the contact form works
 

@@ -1,5 +1,5 @@
 <script setup>
-import { ArrowUpRight } from 'lucide-vue-next'
+import { ArrowUpRight } from '@lucide/vue'
 import { siteConfig } from '@/config/site.config'
 
 const emit = defineEmits(['request-service'])

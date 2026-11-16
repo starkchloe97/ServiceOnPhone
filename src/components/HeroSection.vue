@@ -1,6 +1,6 @@
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue'
-import { ArrowRight, ChevronLeft, ChevronRight, MessageCircle, Phone } from 'lucide-vue-next'
+import { ArrowRight, ChevronLeft, ChevronRight, MessageCircle, Phone } from '@lucide/vue'
 import { siteConfig } from '@/config/site.config'
 
 const activeIndex = ref(0)

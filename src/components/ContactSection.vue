@@ -1,5 +1,5 @@
 <script setup>
-import { Mail, MapPin, Phone } from 'lucide-vue-next'
+import { Mail, MapPin, Phone } from '@lucide/vue'
 import { siteConfig } from '@/config/site.config'
 import { useLeadForm } from '@/composables/useLeadForm'
 
