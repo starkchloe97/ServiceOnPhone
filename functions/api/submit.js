@@ -28,9 +28,20 @@ export async function onRequestPost({ request, env }) {
     return json({ success: false, message: 'The submitted form is too large.' }, 413)
   }
 
+  let rawBody
+  try {
+    rawBody = await request.text()
+  } catch {
+    return json({ success: false, message: 'Invalid request. Please refresh the page and try again.' }, 400)
+  }
+
+  if (new TextEncoder().encode(rawBody).byteLength > MAX_BODY_BYTES) {
+    return json({ success: false, message: 'The submitted form is too large.' }, 413)
+  }
+
   let body
   try {
-    body = await request.json()
+    body = JSON.parse(rawBody)
   } catch {
     return json({ success: false, message: 'Invalid request. Please refresh the page and try again.' }, 400)
   }
